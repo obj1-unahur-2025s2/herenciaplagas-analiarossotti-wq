@@ -1,12 +1,8 @@
 # Plagas
-
 Se trata de desarrollar un modelo que permita estudiar los efectos que se producen cuando una **plaga** ataca a un **elemento**.
 
 Vamos a armarlo por partes.
-
-
 ## Elementos que pueden ser atacados.
-
 El modelo incluye los posibles blancos de un ataque, a los que llamamos **elementos**. De cada elemento, nos interesa aber si es bueno o no para la vida de los humanos.
 Debemos contemplar estos elementos
 
@@ -20,17 +16,14 @@ Debemos contemplar estos elementos
 	
 - **Mascota**    
 	De cada mascota se conoce el _nivel de salud_, un número. Cuanto más alto es este número, se considera que la mascota es más saludable.  
-	Se considera que una mascota _es buena_ si su nivel de salud supera las 250 unidades.
-	
+	Se considera que una mascota _es buena_ si su nivel de salud supera las 250 unidades.	
 A su vez, los elementos se agrupan en **barrios**; en cada barrio hay varios elementos.
-
-<br>
 
 **Requerimientos**  
 - Saber si un elemento es, o no, bueno.
-- Saber si un barrio es _copado_, la condición es que tenga más elementos buenos que no-buenos. P.ej. si un barrio tiene 7 elementos, 5 son buenos y 2 no, entonces es copado, pero si 3 son buenos y 4 no, entonces el barrio no es copado.
+- Saber si un barrio es _copado_, la condición es que tenga más elementos buenos que no-buenos. P.ej. si un barrio 
+tiene 7 elementos, 5 son buenos y 2 no, entonces es copado, pero si 3 son buenos y 4 no, entonces el barrio no es copado.
 
-<br>
 
 ## Plagas
 Como ya indicamos, el propósito de este modelo es estudiar el _ataque_ de una plaga a un elemento.  
@@ -81,13 +74,9 @@ Este efecto se calcula a partir del nivel de daño de la plaga, y de si transmit
 	
 - **Mascota**    
 	Si la plaga que ataca transmite enfermedades, entonces el nivel de salud de la mascota disminuye en una cantidad igual al nivel de daño de la plaga. Si la plaga **no** transmite enermedades, a la mascota no le pasa nada.
-	
-<br>
 
 **Requerimientos**  
 - poder simular que un elemento _recibe el ataque_ de una plaga, generándose los efectos indicados en el elemento.
-
-<br>
 
 ## Efectos de un ataque sobre las plagas
 
@@ -98,13 +87,8 @@ Hay dos casos particulares
 - para las _plagas de cucarachas_: **además** del aumento de población, el peso promedio aumenta en 2 gramos.
 - para las _plagas de garrapatas_: la población aumenta un 20%, **en lugar del** aumento de 10%. Este es el aspecto en el que las plagas de garrapatas se distinguen de las de pulgas.
 
-<br>
-
 **Requerimiento**  
 Agregar al modelo los efectos descriptos.
-
-
-<br>
 
 **Consejo**  
 Agregar un método en las plagas que implemente el ataque a un elemento, que haga dos cosas: 
