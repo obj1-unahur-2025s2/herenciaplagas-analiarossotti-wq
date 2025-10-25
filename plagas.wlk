@@ -1,46 +1,44 @@
 //Super Clase - Clase Padre
 class Plaga {
-    var poblacion
+    var poblacion //declaro los valores que van a ser necesarios para instanciar la clase
+
     method transmiteEnfermedad() = poblacion >= 10
 
-    method atacarElemento() {
-        poblacion * 1.1
-    }
+    method atacarElemento() { poblacion * 1.1 }
 }
 
 //Sub Clase
 class PlagaDeCucarachas inherits Plaga {
     var pesoPromedio
     
-    method nivelDeDaño() {
-      return poblacion / 2
-    }
+    method nivelDeDaño() = if(poblacion >= 10) poblacion/2 else 0
 
-    override method transmiteEnfermedad() {
+    override method transmiteEnfermedad() { //poblacion >= 10
       return super() and (pesoPromedio >= 10)
     }
 
     override method atacarElemento() {
-        super()
+        super()     //poblacion * 1.1
         pesoPromedio += 2
     }
 }
 
 class PlagaDePulgas inherits Plaga {
-    method nivelDeDaño() = poblacion * 2
+    method nivelDeDaño() = if(poblacion >= 10) poblacion*2 else 0
 }
 
-//Mismas condiciones que plaga de pulgas
+/*El _nivel de daño_ que producen, y el criterio para determinar si _transmiten enfermedades_, 
+    son iguales a los de la plaga de pulgas. Más adelante va a aparecer una diferencia entre pulgas y garrapatas. */
 class PlagaDeGarrapatas inherits PlagaDePulgas {
-    override method nivelDeDaño() = poblacion
+    override method nivelDeDaño() = if(poblacion >= 10) poblacion else 0
     
-    override method atacarElemento() {
+    override method atacarElemento() {  //sobre escribo el metodo, porque cambia el valor
         poblacion * 1.2
     }
 }
 
 class PlagaDeMosquitos inherits Plaga {
-    method nivelDeDaño() = poblacion
+    method nivelDeDaño() = if(poblacion >= 10) poblacion else 0
     
     override method transmiteEnfermedad() {
         return super() and (poblacion % 3 == 0)
@@ -100,20 +98,13 @@ class Mascota {
 
 class Barrio {
     const elementos = []
-    method agregarNuevoElemento(elemento) {
-        elementos.add(elemento)
-    }
+    
+    method agregarNuevoElemento(elemento) = elementos.add(elemento)
 
-    method esCopado() {
-        self.elementosBuenos() > self.elementosNoBuenos()
-    }
+    method elementosBuenos() = elementos.count({ e => e.esBueno()})
 
-    method elementosBuenos() {
-        return elementos.count({ e => e.esBueno()})
-    }
-    method elementosNoBuenos() {
-       return elementos.count({ e => !e.esBueno()})
-    }
+    method elementosNoBuenos() = elementos.count({ e => !e.esBueno()})
+
+    method esCopado() = self.elementosBuenos() > self.elementosNoBuenos()
 }
-
 

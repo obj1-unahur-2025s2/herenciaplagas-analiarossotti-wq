@@ -1,0 +1,68 @@
+import plagas.*
+/***Requerimientos**  
+- obtener el _nivel de daño_ de una plaga cualquiera.
+- saber si una plaga _transmite enfermedades_ o no.*/
+
+
+// 2. Instancia de PlagaDeCucarachas
+// Necesita valores para 'poblacion' (heredado) y 'pesoPromedio' (propio)
+//Poblacion, corresponde a la clase Padre, PesoPromedio a la clase PlagaDeCucarachas
+const cucarachasPoderosas = new PlagaDeCucarachas(poblacion = 15, pesoPromedio = 12)
+const cucarachasPequenas = new PlagaDeCucarachas(poblacion = 8, pesoPromedio = 5)
+
+describe "Test Cucas" {
+  test "Cucarachas Poderosas" {
+    assert.equals(7.5, cucarachasPoderosas.nivelDeDaño())
+    assert.that(cucarachasPoderosas.transmiteEnfermedad())
+  }
+
+  test "Cucarachas Pequeñas" {
+    assert.equals(0, cucarachasPequenas.nivelDeDaño())
+    assert.notThat(cucarachasPequenas.transmiteEnfermedad())
+  }
+}
+
+// 3. Instancia de PlagaDePulgas
+// Necesita un valor para 'poblacion' (heredado)
+const pulgasNumerosas = new PlagaDePulgas(poblacion = 30)
+const pulgasPocas = new PlagaDePulgas(poblacion = 5)
+
+describe "Test Pulgas" {
+  test "Pulgas Numerosas" {
+    assert.equals(60, pulgasNumerosas.nivelDeDaño())
+    assert.that(pulgasNumerosas.transmiteEnfermedad())
+  }
+
+  test "Pulgas Pequeñas" {
+    assert.equals(0, pulgasPocas.nivelDeDaño())
+    assert.notThat(pulgasPocas.transmiteEnfermedad())
+  }
+}
+
+// 4. Instancia de PlagaDeGarrapatas
+// Necesita un valor para 'poblacion' (heredado)
+const garrapatasGrandes = new PlagaDeGarrapatas(poblacion = 20)
+
+describe "Test Garrapatas" {
+  test "Garrapatas Grandes" {
+    assert.equals(20, garrapatasGrandes.nivelDeDaño())
+    assert.that(garrapatasGrandes.transmiteEnfermedad())
+  }
+}
+
+// 5. Instancia de PlagaDeMosquitos
+// Necesita un valor para 'poblacion' (heredado)
+const mosquitosConEnfermedad = new PlagaDeMosquitos(poblacion = 30) // 30 es divisible por 3
+const mosquitosSinEnfermedad = new PlagaDeMosquitos(poblacion = 20) // 20 no es divisible por 3
+
+describe "Test Mosquitos" {
+  test "mosquitosConEnfermedad" {
+    assert.equals(30, mosquitosConEnfermedad.nivelDeDaño())
+    assert.that(mosquitosConEnfermedad.transmiteEnfermedad())
+  }
+
+  test "mosquitosSinEnfermedad" {
+    assert.equals(20, mosquitosSinEnfermedad.nivelDeDaño())
+    assert.notThat(mosquitosSinEnfermedad.transmiteEnfermedad())
+  }
+}
